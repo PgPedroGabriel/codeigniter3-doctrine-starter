@@ -16,7 +16,14 @@ install bower
 
 before use
 ```
-bower install
+$ bower install
 ```
 
 remember to enable mod_rewrite in you apache server.
+
+
+TO use doctrine CLi comands execute
+
+```
+$ php vendor/bin/doctrine orm:schema-tool:[your command] --dump-sql
+```
