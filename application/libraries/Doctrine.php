@@ -32,11 +32,26 @@ class Doctrine
         $proxies_dir = APPPATH . 'models/Proxies';
         $metadata_paths = array(APPPATH . 'models');
 
-        // Set $dev_mode to TRUE to disable caching while you develop
-        $config = Setup::createAnnotationMetadataConfiguration($metadata_paths, $dev_mode = true, $proxies_dir);
-        $this->em = EntityManager::create($connection_options, $config);
-
         $loader = new ClassLoader($models_namespace, $models_path);
         $loader->register();
+
+        // Set $dev_mode to TRUE to disable caching while you develop
+        $config = Setup::createAnnotationMetadataConfiguration($metadata_paths, ENVIRONMENT == "development", $proxies_dir);
+
+        if(ENVIRONMENT == "development")
+        {
+            $cache = new \Doctrine\Common\Cache\ArrayCache;
+            $config->setAutoGenerateProxyClasses(true);
+        }
+        else
+        {
+            $cache = new \Doctrine\Common\Cache\ApcCache;
+            $config->setAutoGenerateProxyClasses(false);
+        }
+
+        $config->setQueryCacheImpl($cache);
+        $config->setMetadataCacheImpl($cache);
+
+        $this->em = EntityManager::create($connection_options, $config);
     }
 }

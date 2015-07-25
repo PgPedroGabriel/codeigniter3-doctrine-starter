@@ -89,6 +89,12 @@ switch (ENVIRONMENT)
 		exit(1); // EXIT_ERROR
 }
 
+
+if(!is_dir('vendor')) {
+
+	die("Instale o composer na sua maquina, e ultilize  $ php composer install");
+
+}
 /*
  *---------------------------------------------------------------
  * SYSTEM FOLDER NAME

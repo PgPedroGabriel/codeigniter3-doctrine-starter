@@ -7,23 +7,19 @@ namespace Entities;
  **/
 class User extends Base
 {
-    /** 
-    * @Column(type="string", unique=true) 
-    **/
-    private $mat;
 
-    /** 
-    * @Column(type="string") 
+    /**
+    * @Column(type="string")
     **/
     private $password;
 
-    /** 
-    * @Column(type="string") 
+    /**
+    * @Column(type="string")
     **/
     private $name;
 
-    /** 
-    * @Column(type="string") 
+    /**
+    * @Column(type="string")
     **/
     private $email;
 
@@ -63,7 +59,7 @@ class User extends Base
 
         return $this;
     }
-    
+
     public function getEmail()
     {
         return $this->email;

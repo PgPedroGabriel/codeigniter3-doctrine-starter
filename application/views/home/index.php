@@ -1,0 +1,1 @@
+<h3>Hello <?=$this->user->getName()?></h3>

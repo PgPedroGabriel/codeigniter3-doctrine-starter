@@ -5,6 +5,7 @@ class MY_Controller extends CI_Controller {
 
 	public $user = null;
 	public $data = array();
+	public $path = "";
 
 	public function __construct() {
 		parent::__construct();
@@ -26,17 +27,24 @@ class MY_Controller extends CI_Controller {
 	protected function _logout(){
 		$this->session->unset_userdata('user_id');
 		$this->user = null;
-		return;		
+		return;
 	}
 
-	protected function _login($mat, $pass){
+	protected function _login($email = null, $pass = null){
 
-		$this->user = $this->doctrine->em->getRepository('Entities\User')->findOneBy(array('mat' => $mat, 'password' => $password));
-
-		if(empty($user))
+		if(!empty($mat) || empty($pass))
+		{
 			return false;
-		else {
+		}
 
+		$this->user = $this->doctrine->em->getRepository('Entities\User')->findOneBy(array('email' => $email, 'password' => md5($pass)));
+
+		if(empty($this->user))
+		{
+			return false;
+		}
+		else
+		{
 			$this->session->set_userdata('user_id', $this->user->getId());
 
 			return true;
@@ -45,10 +53,28 @@ class MY_Controller extends CI_Controller {
 
 	protected function render($view = false){
 
-		$this->data['view'] = $view;
+		$this->data['view'] = $this->path.$view;
 		$this->data['user'] = $this->user;
+
+		$message = $this->session->flashdata('message');
+		$class = $this->session->flashdata('class');
+
+		$this->data['message'] = ['message' => $message,  'class' => $class];
 
 		$this->load->view('index', $this->data);
 
+	}
+
+	protected function setMessage($message = "Successo!", $class = "success")
+	{
+		$this->session->set_flashdata('message', $message);
+		$this->session->set_flashdata('class', $class);
+
+		return;
+	}
+	protected function verifyPost()
+	{
+		if($this->input->server('REQUEST_METHOD') != "POST")
+			redirect();
 	}
 }

@@ -7,9 +7,12 @@ use Doctrine\ORM\Tools\Console\ConsoleRunner;
 define('APPPATH', dirname(__FILE__) . '/application/');
 define('BASEPATH', APPPATH . '/../system/');
 define('ENVIRONMENT', 'development');
+
 chdir(APPPATH);
+
 require APPPATH . '/libraries/Doctrine.php';
 // replace with mechanism to retrieve EntityManager in your app
 $doctrine = new Doctrine();
 $entityManager = $doctrine->em;
+
 return ConsoleRunner::createHelperSet($entityManager);

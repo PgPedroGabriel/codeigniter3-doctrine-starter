@@ -3,18 +3,22 @@ namespace Entities;
 
 abstract class Base
 {
-    /** 
-    * @Id 
+    /**
+    * @Id
     * @GeneratedValue
-    * @Column(type="integer")  
+    * @Column(type="integer")
     **/
     protected $id;
 
-    /** 
-    * @Column(type="datetime", nullable=false) 
+    /**
+    * @Column(type="datetime", nullable=false)
     **/
     protected $date_created = null;
 
+    /**
+    * @Column(type="datetime", nullable=true)
+    **/
+    protected $date_updated = null;
 
     public function __construct() {
         $this->date_created = new \DateTime();
