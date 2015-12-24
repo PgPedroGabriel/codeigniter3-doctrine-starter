@@ -38,6 +38,8 @@ class Doctrine
         // Set $dev_mode to TRUE to disable caching while you develop
         $config = Setup::createAnnotationMetadataConfiguration($metadata_paths, ENVIRONMENT == "development", $proxies_dir);
 
+        //$config->setSQLLogger(new \Doctrine\DBAL\Logging\EchoSQLLogger());
+        
         if(ENVIRONMENT == "development")
         {
             $cache = new \Doctrine\Common\Cache\ArrayCache;

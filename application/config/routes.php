@@ -54,3 +54,8 @@ $route['login'] = 'Home/login';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['admin-cms'] = 'admin/Main/index';
+$route['admin-cms/login'] = 'admin/Main/do_login';
+$route['admin-cms/logout'] = 'admin/Main/do_logout';
