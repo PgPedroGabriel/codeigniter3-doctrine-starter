@@ -122,7 +122,7 @@ class BaseAdminRepository extends EntityRepository
 {
     public function getActiveEntries($offset = 0, $limit = 30, $order = ['date_created' => 'DESC'])
     {
-        return $this->findBy(['status' => BaseAdmin::ACTIVED], $order, $limit, $offser);
+        return $this->findBy(['status' => BaseAdmin::ACTIVED], $order, $limit, $offset);
     }
 
     public function getInactiveEntries($offset = 0, $limit = 30, $order = ['date_created' => 'DESC'])

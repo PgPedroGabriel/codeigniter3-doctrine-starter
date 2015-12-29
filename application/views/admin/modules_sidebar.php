@@ -26,7 +26,16 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
+      <?php foreach ($this->modules as $module): ?>
       <li class="active treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span><?=$module->getName()?></span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+      </li>
+      <?php endforeach ?>
+
+      <li class="active treeview">
+          
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
@@ -35,6 +44,7 @@
           <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
         </ul>
       </li>
+
       <li class="treeview">
         <a href="#">
           <i class="fa fa-files-o"></i>

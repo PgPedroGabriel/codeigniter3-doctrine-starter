@@ -6,6 +6,7 @@ class MY_Admin extends CI_Controller {
 	public $user = null;
 	public $data = array();
 	public $path = "";
+	public $modules = array();
 
 	public function __construct() {
 		parent::__construct();
@@ -14,6 +15,9 @@ class MY_Admin extends CI_Controller {
 		{
 			redirect('admin/cms');
 		}
+
+		$this->modules = $this->doctrine->em->getRepository('Entities\Module')->getActiveEntries();
+
 	}
 
 	public function getUser(){
