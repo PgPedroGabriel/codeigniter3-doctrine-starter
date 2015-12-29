@@ -7,22 +7,20 @@ class MY_Admin extends CI_Controller {
 	public $data = array();
 	public $path = "";
 
-	public $d = null;
-
 	public function __construct() {
 		parent::__construct();
-		$this->_getUser();
+		$this->getUser();
 		if(!$this->user && !$this instanceof Main)
 		{
 			redirect('admin/cms');
 		}
 	}
 
-	private function _getUser(){
+	public function getUser(){
 
 		if($this->session->userdata('admin_user_id')){
 
-			$this->user = $this->doctrine->em->find('Entities\AdminUser', $this->session->userdata('admin_user_id'));
+			$this->user = $this->doctrine->em->find('Entities\UserAdmin', $this->session->userdata('admin_user_id'));
 			return;
 		}
 
@@ -40,7 +38,7 @@ class MY_Admin extends CI_Controller {
 
 	protected function login($email = null, $pass = null){
 
-		$this->user = $this->doctrine->em->getRepository('Entities\AdminUser')->findOneBy(['email' => $email]);
+		$this->user = $this->doctrine->em->getRepository('Entities\UserAdmin')->findOneBy(['email' => $email]);
 
 		if(empty($this->user))
 		{

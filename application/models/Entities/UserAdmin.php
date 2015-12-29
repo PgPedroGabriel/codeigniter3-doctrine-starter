@@ -1,11 +1,13 @@
 <?php
 namespace Entities;
 
+use Doctrine\ORM\EntityRepository;
+
 /**
- * @Entity
- * @Table(name="admin_users")
+ * @Entity(repositoryClass="Entities\UserAdminRepository")
+ * @Table(name="admin_user")
  **/
-class AdminUser extends Base
+class UserAdmin extends BaseAdmin
 {
 
     /**
@@ -22,6 +24,16 @@ class AdminUser extends Base
     * @Column(type="string", unique=true)
     **/
     private $email;
+
+    /**
+    * @Column(type="string", nullable=true)
+    **/
+    private $picture;
+
+    /**
+    * @Column(type="text")
+    **/
+    private $bio;
 
     public function getPassword()
     {
@@ -74,4 +86,56 @@ class AdminUser extends Base
     {
         return \password_verify($password, $this->password);
     }
+
+    /**
+     * Gets the value of bio.
+     *
+     * @return mixed
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * Sets the value of bio.
+     *
+     * @param mixed $bio the bio
+     *
+     * @return self
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of picture.
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Sets the value of picture.
+     *
+     * @param mixed $picture the picture
+     *
+     * @return self
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+}
+
+class UserAdminRepository extends BaseAdminRepository
+{
 }

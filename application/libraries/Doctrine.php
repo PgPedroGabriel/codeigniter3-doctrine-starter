@@ -32,6 +32,9 @@ class Doctrine
         $proxies_dir = APPPATH . 'models/Proxies';
         $metadata_paths = array(APPPATH . 'models');
 
+        $loader = new ClassLoader('Factories', 'application/models/');
+        $loader->register();
+
         $loader = new ClassLoader($models_namespace, $models_path);
         $loader->register();
 

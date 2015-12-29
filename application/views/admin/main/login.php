@@ -27,7 +27,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?=$baseUrl?>frontend/index2.html"><b>PG</b>™</a>
+    <a href="#"><b>PG</b>™</a>
   </div>
   <!-- /.login-logo -->
   <?php if(!empty($requestMessage['message'])): ?>

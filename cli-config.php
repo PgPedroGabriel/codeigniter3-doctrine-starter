@@ -11,6 +11,9 @@ define('ENVIRONMENT', 'development');
 chdir(APPPATH);
 
 require APPPATH . '/libraries/Doctrine.php';
+
+require 'models/Factories/BaseAdmin.php';
+
 // replace with mechanism to retrieve EntityManager in your app
 $doctrine = new Doctrine();
 $entityManager = $doctrine->em;

@@ -56,6 +56,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['admin-cms'] = 'admin/Main/index';
-$route['admin-cms/login'] = 'admin/Main/do_login';
-$route['admin-cms/logout'] = 'admin/Main/do_logout';
+$route['admin-cms'] = 'Admin/Main/index';
+$route['admin-cms/login'] = 'Admin/Main/do_login';
+$route['admin-cms/logout'] = 'Admin/Main/do_logout';
+$route['admin-cms/user/index'] = 'Admin/UserAdmin/index';
+$route['admin-cms/user'] = 'Admin/UserAdmin/index';
