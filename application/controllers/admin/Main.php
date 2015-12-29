@@ -9,7 +9,7 @@ class Main extends MY_Admin {
 	{
 		if(!$this->user)
 		{
-			$this->render('login');
+			$this->render();
 		}
 		else
 		{

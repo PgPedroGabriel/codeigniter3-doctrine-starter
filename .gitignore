@@ -1,3 +1,4 @@
 /vendor/
 /bower_components/
 composer.lock
+/template/

@@ -76,6 +76,7 @@ class MY_Admin extends CI_Controller {
 
 		$this->data['requestMessage'] = ['message' => $message,  'class' => $class, 'status' => $status];
 		$this->data['adminBaseUrl'] = $this->adminBaseUrl();
+		$this->data['baseUrl'] = base_url();
 
 		$this->load->view('admin/index', $this->data);
 
