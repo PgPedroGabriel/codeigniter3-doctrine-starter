@@ -1,13 +1,13 @@
-<?php if (isset($this->controller) && !empty($this->controller)): ?>
+<?php if (isset($this->module) && !empty($this->module)): ?>
 <section class="content-header">
   <h1>
-    <?=$this->controller->getTitle();?>
-    <small>Versão <?=$this->controller->getVersion()?></small>
+    <?=$this->module->getName();?>
+    <small>Versão <?=$this->module->getVersion()?></small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="<?=$baseAdminUrl?>"><i class="fa fa-home"></i> Home</a></li>
     <?php if (!isset($this->action)): ?>
-      <li class="active"><?=$this->controller->getTitle()?></li>
+      <li class="active"><?=$this->module->getName()?></li>
     <?php endif ?>
   </ol>
 </section>   

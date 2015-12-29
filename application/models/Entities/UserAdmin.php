@@ -1,6 +1,7 @@
 <?php
 namespace Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -34,6 +35,19 @@ class UserAdmin extends BaseAdmin
     * @Column(type="text")
     **/
     private $bio;
+
+    /**
+     * @ManyToMany(targetEntity="Module", inversedBy="users")
+     * @JoinTable(name="user_module_access")
+     * @OrderBy({"sequence" = "ASC"})
+     */
+    private $modules;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->modules = new ArrayCollection();
+    }
 
     public function getPassword()
     {
@@ -133,6 +147,12 @@ class UserAdmin extends BaseAdmin
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function getPictureUrl()
+    {   
+        return base_url().'frontend/dist/img/user2-160x160.jpg';
+        // return base_url().'uploads/user_admin/'.$this->getPicture();
     }
 }
 

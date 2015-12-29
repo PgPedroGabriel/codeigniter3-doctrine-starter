@@ -31,8 +31,7 @@ class MY_Admin extends CI_Controller {
 		
 		$this->session->unset_userdata('admin_user_id');
 		$this->user = null;
-
-		$this->setMessage("Logout efetuado com sucesso.");
+		//$this->setMessage("Logout efetuado com sucesso.");
 		return;
 	}
 
@@ -71,8 +70,9 @@ class MY_Admin extends CI_Controller {
 		$message = $this->session->flashdata('message');
 		$class = $this->session->flashdata('class');
 		$status = $this->session->flashdata('status');
+		$subject = $this->session->flashdata('subject');
 
-		$this->data['requestMessage'] = ['message' => $message,  'class' => $class, 'status' => $status];
+		$this->data['requestMessage'] = ['message' => $message,  'class' => $class, 'status' => $status, 'subject' => $subject];
 		$this->data['adminBaseUrl'] = $this->adminBaseUrl();
 		$this->data['baseUrl'] = base_url();
 
@@ -82,6 +82,18 @@ class MY_Admin extends CI_Controller {
 
 	protected function setMessage($message = "Successo!", $class = "success", $status = true)
 	{
+		if($class == "success")
+		{
+			$this->session->set_flashdata('subject', "Sucesso");
+		}
+		else if($class == "error")
+		{
+			$this->session->set_flashdata('subject', "Erro!");
+		}
+		else if($class == "info")
+		{
+			$this->session->set_flashdata('subject', "Informação");
+		}
 
 		$this->session->set_flashdata('message', $message);
 		$this->session->set_flashdata('class', $class);

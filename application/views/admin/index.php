@@ -45,19 +45,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="wrapper">
 
     <?php $this->load->view('admin/header'); ?>
-    <?php $this->load->view('admin/controllers_sidebar'); ?>
+    <?php $this->load->view('admin/modules_sidebar'); ?>
 
     <div class="content-wrapper">
         
         <?php $this->load->view('admin/content_header'); ?>
         
-        <?php if(!empty($requestMessage['message'])): ?>
-          <div class="row">
-            <div class="alert alert-<?=$requestMessage['class']?>"><?=$requestMessage['message']?></div>
-          </div>
-        <?php endif; ?>
 
         <section class="content">
+          
+          <?php if(!empty($requestMessage['message'])): ?>
+            <div class="row">
+              <div class="col-md-6">
+                  <div class="callout callout-<?=$requestMessage['class']?>">
+                    <h4><?=$requestMessage['subject']?></h4>
+                    <p><?=$requestMessage['message']?></p>
+                  </div>
+              </div>
+            </div>
+          <?php endif; ?>
+
           <?php $this->load->view($view); ?>
         </section>
 
@@ -93,6 +100,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?=$baseUrl?>frontend/dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=$baseUrl?>frontend/dist/js/demo.js"></script>
+
+<script src="<?=$baseUrl?>javascript/scriptAdmin.js"></script>
+
 </body>
 </html>
 <?php endif ?>
