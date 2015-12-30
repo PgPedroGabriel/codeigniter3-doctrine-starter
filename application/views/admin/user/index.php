@@ -13,11 +13,11 @@
 
 	  <div class="box-tools">
 	    <ul class="pagination pagination-sm no-margin pull-right">
-	      <li><a href="<?=($page > 1) ? $this->module->getUrl().'index/'.($page-1) : '#'?>">&laquo;</a></li>
+	      <li><a href="<?=($page > 1) ? $this->module->getUrl().'/index/'.($page-1) : '#'?>">&laquo;</a></li>
 	      <?php for ($pageCount = 1;  $pageCount <= $pages; $pageCount++): ?>
-		      <li <?=($page == $pageCount)? ' class="active" ' : ''?>><a href="<?=($page == $pageCount) ? '#' : $this->module->getUrl().'index/'.$pageCount?>"><?=$pageCount?></a></li>
+		      <li <?=($page == $pageCount)? ' class="active" ' : ''?>><a href="<?=($page == $pageCount) ? '#' : $this->module->getUrl().'/index/'.$pageCount?>"><?=$pageCount?></a></li>
 	      <?php endfor; ?>
-	      <li><a href="<?=($pageCount <= $page) ? $this->module->getUrl().'index/'.($page+1) : '#'?>">&raquo;</a></li>
+	      <li><a href="<?=($pageCount <= $page) ? $this->module->getUrl().'/index/'.($page+1) : '#'?>">&raquo;</a></li>
 	    </ul>
 	  </div>
 	</div>

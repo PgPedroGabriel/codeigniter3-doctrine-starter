@@ -19,11 +19,12 @@ class MY_Admin extends CI_Controller {
 
 		$this->modules = $this->doctrine->em->getRepository('Entities\Module')->getActiveEntries();
 		$this->module = $this->doctrine->em->getRepository('Entities\Module')->findOneBy(['controller' => get_class($this)]);
-
+/*
 		if(!$this->module)
 		{
 			redirect('admin-cms');
 		}
+	*/
 	}
 
 	public function getUser(){

@@ -12,7 +12,7 @@ class MY_AdminActions extends MY_Admin {
 
 	public $rep;
 
-	public $limitEntries = 30;
+	public $limitEntries = 1;
 
 	public function __construct() {
 		parent::__construct();
