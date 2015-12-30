@@ -149,10 +149,10 @@ class UserAdmin extends BaseAdmin
         return $this;
     }
 
-    public function getPictureUrl()
+    public function getPictureUrl($small = '')
     {   
         return base_url().'frontend/dist/img/user2-160x160.jpg';
-        // return base_url().'uploads/user_admin/'.$this->getPicture();
+        // return base_url().'uploads/user_admin/'$small.$this->getPicture();
     }
 }
 

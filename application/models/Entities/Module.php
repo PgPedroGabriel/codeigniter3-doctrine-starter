@@ -16,9 +16,19 @@ class Module extends BaseAdmin
     private $name;
 
     /**
-    * @Column(type="string", length=25)
+    * @Column(type="string", length=25, nullable=true)
     **/
     private $class;
+
+    /**
+    * @Column(type="string", length=25, nullable=true)
+    **/
+    private $controller;
+
+    /**
+    * @Column(type="string", length=25, nullable=true)
+    **/
+    private $fontAwesomeClass;
 
     /**
     * @Column(type="string", length=4)
@@ -66,6 +76,55 @@ class Module extends BaseAdmin
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+        /**
+     * Gets the value of name.
+     *
+     * @return mixed
+     */
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    /**
+     * Sets the value of controller.
+     *
+     * @param mixed $controller the controller
+     *
+     * @return self
+     */
+    public function setController($controller)
+    {
+        $this->controller = $controller;
+
+        return $this;
+    }
+
+
+    /**
+     * Gets the value of class.
+     *
+     * @return mixed
+     */
+    public function getFontAwesomeClass()
+    {
+        return $this->fontAwesomeClass;
+    }
+
+    /**
+     * Sets the value of fontAwesomeClass.
+     *
+     * @param mixed $fontAwesomeClass the fontAwesomeClass
+     *
+     * @return self
+     */
+    public function setFontAwesomeClass($fontAwesomeClass)
+    {
+        $this->fontAwesomeClass = $fontAwesomeClass;
 
         return $this;
     }
@@ -190,6 +249,16 @@ class Module extends BaseAdmin
         return $this;
     }
 
+
+    public function getUrl()
+    {
+        return base_url().'admin-cms/'.$this->adminUrl;
+    }
+
+    public function isModule(Module $module)
+    {
+        return $this->getId() == $module->getId();
+    }
 }
 
 class ModuleRepository extends BaseAdminRepository

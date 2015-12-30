@@ -5,7 +5,7 @@
     <small>Versão <?=$this->module->getVersion()?></small>
   </h1>
   <ol class="breadcrumb">
-    <li><a href="<?=$baseAdminUrl?>"><i class="fa fa-home"></i> Home</a></li>
+    <li><a href="<?=$adminBaseUrl?>"><i class="fa fa-home"></i> Home</a></li>
     <?php if (!isset($this->action)): ?>
       <li class="active"><?=$this->module->getName()?></li>
     <?php endif ?>

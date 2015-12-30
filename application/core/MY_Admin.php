@@ -7,17 +7,23 @@ class MY_Admin extends CI_Controller {
 	public $data = array();
 	public $path = "";
 	public $modules = array();
+	public $module = null;
 
 	public function __construct() {
 		parent::__construct();
 		$this->getUser();
 		if(!$this->user && !$this instanceof Main)
 		{
-			redirect('admin/cms');
+			redirect('admin-cms');
 		}
 
 		$this->modules = $this->doctrine->em->getRepository('Entities\Module')->getActiveEntries();
+		$this->module = $this->doctrine->em->getRepository('Entities\Module')->findOneBy(['controller' => get_class($this)]);
 
+		if(!$this->module)
+		{
+			redirect('admin-cms');
+		}
 	}
 
 	public function getUser(){

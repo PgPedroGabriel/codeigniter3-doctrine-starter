@@ -24,6 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="<?=$baseUrl?>frontend/plugins/datatables/dataTables.bootstrap.css">
     <!-- jvectormap -->
     <link rel="stylesheet" href="<?=$baseUrl?>frontend/plugins/jvectormap/jquery-jvectormap-1.2.2.css">    
     <!-- Theme style -->
@@ -85,6 +87,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?=$baseUrl?>frontend/bootstrap/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="<?=$baseUrl?>frontend/plugins/fastclick/fastclick.js"></script>
+<script src="<?=$baseUrl?>frontend/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?=$baseUrl?>frontend/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=$baseUrl?>frontend/dist/js/app.min.js"></script>
 <!-- Sparkline -->

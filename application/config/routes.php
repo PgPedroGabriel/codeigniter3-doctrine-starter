@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['admin-cms'] = 'Admin/Main/index';
+$route['admin-cms/index'] = 'Admin/Main/index';
 $route['admin-cms/login'] = 'Admin/Main/do_login';
 $route['admin-cms/logout'] = 'Admin/Main/do_logout';
 $route['admin-cms/user/index'] = 'Admin/UserAdmin/index';

@@ -115,7 +115,24 @@ abstract class BaseAdmin
         $this->status = $status;
 
         return $this;
-    } 
+    }
+
+    public function getStatusHtml()
+    {
+        switch ($this->status) {
+            case self::ACTIVED:
+                return '<span class="label label-success">Ativo</span>';
+            case self::INACTIVED:
+                return '<span class="label label-warning">Inativo</span>';
+            default:
+                return '<span class="label label-danger">Deletado</span>';
+        }
+    }
+
+    public function getDateCreatedFormated()
+    {
+        return $this->getDateCreated()->format('d/m/Y H:i');
+    }
 }
 
 class BaseAdminRepository extends EntityRepository
