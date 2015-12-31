@@ -133,6 +133,12 @@ abstract class BaseAdmin
     {
         return $this->getDateCreated()->format('d/m/Y H:i');
     }
+
+    public function switchStatus()
+    {
+        $this->status = !$this->status;
+        return;
+    }
 }
 
 class BaseAdminRepository extends EntityRepository

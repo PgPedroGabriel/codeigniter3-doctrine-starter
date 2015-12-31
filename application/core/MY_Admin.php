@@ -19,7 +19,8 @@ class MY_Admin extends CI_Controller {
 
 		$this->modules = $this->doctrine->em->getRepository('Entities\Module')->getActiveEntries();
 		$this->module = $this->doctrine->em->getRepository('Entities\Module')->findOneBy(['controller' => get_class($this)]);
-/*
+	
+	/*
 		if(!$this->module)
 		{
 			redirect('admin-cms');
@@ -124,5 +125,30 @@ class MY_Admin extends CI_Controller {
 	protected function adminBaseUrl()
 	{
 		return base_url().'admin-cms/';
+	}
+	
+	public function successJson($message = "Sucesso!", $data = [])
+	{
+		$result = new stdClass();
+
+		$result->message = $message;
+		$result->status = true;
+		$result->data = $data;
+
+		header('Content-type: application/json');
+		echo json_encode($result);
+		exit(0);
+	}
+	public function errorJson($message = "Sucesso!", $code = 101)
+	{
+		$result = new stdClass();
+		
+		$result->message = $message;
+		$result->status = false;
+		$result->code = $code;
+
+		header('Content-type: application/json');
+		echo json_encode($result);
+		exit(0);
 	}
 }

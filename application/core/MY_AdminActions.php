@@ -14,6 +14,11 @@ class MY_AdminActions extends MY_Admin {
 
 	public $limitEntries = 1;
 
+	public $object = null;
+
+	public $successSave = null;
+	public $errorMessage =  null;
+
 	public function __construct() {
 		parent::__construct();
 		$this->getUser();
@@ -22,14 +27,13 @@ class MY_AdminActions extends MY_Admin {
 		$this->uploadDirectory = 'uploads/'.from_camel_case(get_class($this));
 	
 		$this->rep = $this->doctrine->em->getRepository($this->entityRepository);
-
 	}
 
 	public function index($page = 1)
 	{
 		$this->data['count']   = $this->rep->getCount();
 		$this->data['pages'] = ceil($this->data['count'] / $this->limitEntries);
-		
+
 		if($page == 0)
 			$page = 1;
 
@@ -39,5 +43,55 @@ class MY_AdminActions extends MY_Admin {
 
 		$this->data['objects'] = $this->rep->getVisibleEntries($offset, $this->limitEntries);
 		$this->render('index');
+	}
+
+	public function update_status()
+	{
+		if(!$this->input->is_ajax_request())
+		{
+			die("invalid request");
+		}
+
+		$id = $this->input->post('id');
+
+		$this->setObject($id);
+
+		if(!$this->object)
+		{
+			$this->errorJson("Registro não encontrado, tente com outro.", 102);
+		}
+
+		$this->object->switchStatus();
+		$this->saveObject();
+
+		if($this->successSave)
+		{
+			$this->successJson("Alteração concluída com sucesso.", ['html' => $this->object->getStatusHtml() ]);
+		}
+		else
+		{
+			$this->errorJson("Não conseguiu salvar o registro.", 103);
+		}
+	}
+
+	public function setObject($id)
+	{
+		$this->object = $this->doctrine->em->find($this->entityRepository, $id);
+	}
+
+	public function saveObject()
+	{
+		try 
+		{
+			$this->doctrine->em->persist($this->object);
+			$this->doctrine->em->flush();
+
+			$this->successSave = true;
+		} 
+		catch (Exception $e)
+		{
+			$this->successSave = false;
+			$this->errorMessageSave = $e->getMessage();
+		}
 	}
 }

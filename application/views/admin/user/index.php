@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box ">
 	<div class="box-header">
 	  <h3 class="box-title">
 	  	<form action="<?=$this->module->getUrl()?>/search" method="get">
@@ -17,12 +17,20 @@
 	      <?php for ($pageCount = 1;  $pageCount <= $pages; $pageCount++): ?>
 		      <li <?=($page == $pageCount)? ' class="active" ' : ''?>><a href="<?=($page == $pageCount) ? '#' : $this->module->getUrl().'/index/'.$pageCount?>"><?=$pageCount?></a></li>
 	      <?php endfor; ?>
-	      <li><a href="<?=($pageCount <= $page) ? $this->module->getUrl().'/index/'.($page+1) : '#'?>">&raquo;</a></li>
+	      <li><a href="<?=($page < $pages) ? $this->module->getUrl().'/index/'.($page+1) : '#'?>">&raquo;</a></li>
 	    </ul>
 	  </div>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
+	   <div class="errorMessage">
+	    <div class="col-md-6 col-md-offset-3 alert alert-danger alert-dismissible">
+	        <button type="button" class="close" onclick="$('.errorMessage').fadeOut();" aria-hidden="true">×</button>
+	        <h4><i class="icon fa fa-ban"></i> Erro!</h4>
+	        <p id="errorCode"></p>
+	        <p id="errorMessage"></p>
+	    </div>
+   	  </div>
 	  <table id="objects_table" class="table table-bordered table-striped table-hover">
 	    <thead>
 	    <tr>
@@ -39,7 +47,7 @@
 	      <td><img class="user-image img-circle" width="30" height="30" alt="User Image" src="<?=$object->getPictureUrl('small/')?>"></img></td>
 	      <td><?=$object->getName()?></td>
 	      <td><?=$object->getEmail()?></td>
-	      <td><?=$object->getStatusHtml()?></td>
+	      <td class="update-status" data-id="<?=$object->getId()?>"><?=$object->getStatusHtml()?></td>
 	      <td><?=$object->getDateCreatedFormated()?></td>
 	    </tr>
 	    <?php endforeach ?>
@@ -49,7 +57,12 @@
 	    </tr>
 	    </tfoot>
 	  </table>
+
 	</div>
 	<div class="box-footer">
 	</div>
+	<div class="overlay" style="display: none;">
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+
 </div>

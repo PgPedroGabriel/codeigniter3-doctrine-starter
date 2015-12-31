@@ -9,15 +9,15 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="<?=$baseUrl?>frontend/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?=$baseUrl?>assets/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?=$baseUrl?>frontend/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?=$baseUrl?>assets/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?=$baseUrl?>frontend/plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="<?=$baseUrl?>assets/plugins/iCheck/square/blue.css">
   
   <link rel="icon" href="images/favicon.ico">
 
@@ -89,11 +89,11 @@
 <!-- /.login-box -->
 
 <!-- jQuery 2.1.4 -->
-<script src="<?=$baseUrl?>frontend/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="<?=$baseUrl?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <!-- Bootstrap 3.3.5 -->
-<script src="<?=$baseUrl?>frontend/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?=$baseUrl?>assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="<?=$baseUrl?>frontend/plugins/iCheck/icheck.min.js"></script>
+<script src="<?=$baseUrl?>assets/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
