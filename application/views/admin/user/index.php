@@ -23,41 +23,44 @@
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
-	   <div class="errorMessage">
-	    <div class="col-md-6 col-md-offset-3 alert alert-danger alert-dismissible">
-	        <button type="button" class="close" onclick="$('.errorMessage').fadeOut();" aria-hidden="true">×</button>
-	        <h4><i class="icon fa fa-ban"></i> Erro!</h4>
-	        <p id="errorCode"></p>
-	        <p id="errorMessage"></p>
-	    </div>
-   	  </div>
-	  <table id="objects_table" class="table table-bordered table-striped table-hover">
-	    <thead>
-	    <tr>
-	      <th>Foto</th>
-	      <th>Nome</th>
-	      <th>Email</th>
-	      <th>Status</th>
-	      <th>Data de criação</th>
-	    </tr>
-	    </thead>
-	    <tbody>
-	    <?php foreach ($objects as $object): ?>
-	    <tr>
-	      <td><img class="user-image img-circle" width="30" height="30" alt="User Image" src="<?=$object->getPictureUrl('small/')?>"></img></td>
-	      <td><?=$object->getName()?></td>
-	      <td><?=$object->getEmail()?></td>
-	      <td class="update-status" data-id="<?=$object->getId()?>"><?=$object->getStatusHtml()?></td>
-	      <td><?=$object->getDateCreatedFormated()?></td>
-	    </tr>
-	    <?php endforeach ?>
-	    </tbody>
-	    <tfoot>
-	    <tr>
-	    </tr>
-	    </tfoot>
-	  </table>
-
+	   <form action="<?=$this->module->getUrl()?>/delete" id="formDelete" method="POST">
+		   <div class="errorMessage">
+		    <div class="col-md-6 col-md-offset-3 alert alert-danger alert-dismissible">
+		        <button type="button" class="close" onclick="$('.errorMessage').fadeOut();" aria-hidden="true">×</button>
+		        <h4><i class="icon fa fa-ban"></i> Erro!</h4>
+		        <p id="errorCode"></p>
+		        <p id="errorMessage"></p>
+		    </div>
+	   	  </div>
+		  <table id="objects_table" class="table table-bordered table-striped table-hover">
+		    <thead>
+		    <tr>
+		      <th><input type="checkbox" name="checkAll" class="checkAll"></th>
+		      <th>Foto</th>
+		      <th>Nome</th>
+		      <th>Email</th>
+		      <th>Status</th>
+		      <th>Data de criação</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    <?php foreach ($objects as $object): ?>
+		    <tr>
+		      <td><input type="checkbox" name="delete[]" value="<?=$object->getId()?>"></td>
+		      <td><img class="user-image img-circle" width="30" height="30" alt="User Image" src="<?=$object->getPictureUrl('small/')?>"></img></td>
+		      <td><?=$object->getName()?></td>
+		      <td><?=$object->getEmail()?></td>
+		      <td class="update-status" data-id="<?=$object->getId()?>"><?=$object->getStatusHtml()?></td>
+		      <td><?=$object->getDateCreatedFormated()?></td>
+		    </tr>
+		    <?php endforeach ?>
+		    </tbody>
+		    <tfoot>
+		    <tr>
+		    </tr>
+		    </tfoot>
+		  </table>
+	  </form>
 	</div>
 	<div class="box-footer">
 	</div>

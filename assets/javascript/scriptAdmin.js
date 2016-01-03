@@ -70,16 +70,27 @@ jQuery(document).ready(function($) {
 		},
 		this.closeLoaders = function(){
 			$('.overlay').hide();
-		}
+		},
 		this.showError = function(message, code)
 		{
 			$('#errorMessage').text(message);
 			$('#errorCode').text("Código: "+code);
 			$('.errorMessage').fadeIn();
 		}
+
+		this.checkAll = function (e){
+
+			that.executor = $(this);
+
+			$.find('input[name="delete[]"]').forEach(function(element){
+				$(element).prop('checked', that.executor.is(':checked'));
+			});
+		}
 	}
 
 	var Functions = new Functions();
 
 	$('.update-status').bind('click',Functions.updateStatus);
+	$('.checkAll').bind('click', Functions.checkAll);
+	$('#formDelete').bind('submit', Functions.submitDelete);
 });
