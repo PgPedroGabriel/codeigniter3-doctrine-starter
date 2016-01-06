@@ -74,6 +74,29 @@ class MY_AdminActions extends MY_Admin {
 		}
 	}
 
+	public function search($page = 1)
+	{
+		$criteria = $this->input->get('q');
+
+		if($page == 0)
+			$page = 1;
+
+		$this->data['page'] = $page;
+
+		$offset = ($page == 1) ? 0 : (($page - 1) * $this->limitEntries);
+
+		$result = $this->rep->searchInAllColumns($criteria, true, $offset, $this->limitEntries);
+		
+		$this->data['count']   = $result['count'];
+		$this->data['objects'] = $result['objects']; 
+		$this->data['pages'] = ceil($this->data['count'] / $this->limitEntries);
+		$this->data['criteria'] = $criteria;
+		
+		$this->data['action'] = 'search';
+
+		$this->render('index');
+	}
+
 	public function setObject($id)
 	{
 		$this->object = $this->doctrine->em->find($this->entityRepository, $id);

@@ -3,7 +3,7 @@
 	  <h3 class="box-title">
 	  	<form action="<?=$this->module->getUrl()?>/search" method="get">
 		    <div class="input-group input-group-sm" style="width: 25%;">
-		      <input type="text" name="q" class="form-control pull-right" placeholder="Buscar">
+		      <input type="text" name="q" class="form-control pull-right" value="<?=(isset($criteria)) ? $criteria : '' ?>" placeholder="Buscar">
 		      <div class="input-group-btn">
 		        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
 		      </div>

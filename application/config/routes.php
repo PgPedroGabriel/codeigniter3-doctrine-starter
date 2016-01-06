@@ -65,4 +65,5 @@ $route['admin-cms/logout'] = 'Admin/Main/do_logout';
 $route['admin-cms/user/index/(:num)'] = 'Admin/UserAdmin/index/$1';
 $route['admin-cms/user/index'] = 'Admin/UserAdmin/index';
 $route['admin-cms/user/update_status'] = 'Admin/UserAdmin/update_status';
+$route['admin-cms/user/search'] = 'Admin/UserAdmin/search';
 $route['admin-cms/user'] = 'Admin/UserAdmin/index';

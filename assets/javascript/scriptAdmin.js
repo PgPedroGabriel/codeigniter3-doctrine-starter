@@ -86,6 +86,17 @@ jQuery(document).ready(function($) {
 				$(element).prop('checked', that.executor.is(':checked'));
 			});
 		}
+
+		this.submitDelete = function (e) {
+			
+			that.executor = $(this);
+
+
+		}
+
+		this.showAnswerModal = function (text) {
+			
+		}	
 	}
 
 	var Functions = new Functions();

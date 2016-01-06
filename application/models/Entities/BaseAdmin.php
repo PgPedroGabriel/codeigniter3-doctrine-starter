@@ -170,4 +170,37 @@ class BaseAdminRepository extends EntityRepository
 
         return $qb->getQuery()->getSingleScalarResult();
     }
+
+    public function searchInAllColumns($criteria, $onlyVisibles = false, $offset = null, $limit = null)
+    {
+        $columns = $this->getClassMetadata()->getColumnNames();
+        $columns = array_flip($columns);
+
+        unset($columns['password'], $columns['date_updated'], $columns['status']);
+
+        $queryBuilder = parent::createQueryBuilder('object');
+
+        $whereString = "";
+
+        $queryBuilder->select('object');
+
+        foreach ($columns as $column => $index) {
+            $whereString .= "object.".$column." LIKE '%{$criteria}%' OR ";
+        }
+
+        $whereString = substr($whereString, 0, -4);
+
+        if($onlyVisibles)
+        {
+            $whereString .= "AND object.status IN (".BaseAdmin::ACTIVED.",".BaseAdmin::INACTIVED.")";
+        }
+
+        $queryBuilder->where($whereString);
+
+        if($offset)
+            $queryBuilder->setFirstResult($offset);
+
+        return ['objects' => $queryBuilder->setMaxResults($limit)->getQuery()->execute(), 
+                'count' => count($queryBuilder->setMaxResults(null)->getQuery()->getScalarResult()) ];
+    }
 }
